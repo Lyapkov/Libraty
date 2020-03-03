@@ -2,233 +2,42 @@
 
 {% block body %}
 
+    <body class="text-center">
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-12 blog-main" id="app-1">
+                <h3 class="pb-4 mb-4 font-italic border-bottom">
+                </h3>
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">{{ book.name }}</h2>
+                        <h5>Автор: {{ book.author }}</h5>
+                        <p>Год издания: {{ book.year }}</p>
+                        <hr>
+                    </div>
+            </div>
+        </div>
+    </main>
 
-    <script>
-        $(document).ready(function( event ) {
-            $( 'form' ).submit(function( event ) {
-                event.preventDefault();
+    </body>
 
-                $.ajax({
-                    type: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-
-                    success: function (result) {
-                        alert('well done');
-                    }
-                });
-            })
-        })
-    </script>
 {% endblock %}
 
 {% block stylesheets %}
-    <header>
-        <div class="collapse bg-dark" id="navbarHeader">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 col-md-7 py-4">
-                        <h4 class="text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Около</font></font></h4>
-                        <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-                    </div>
-                    <div class="col-sm-4 offset-md-1 py-4">
-                        <h4 class="text-white">Contact</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                            <li><a href="#" class="text-white">Like on Facebook</a></li>
-                            <li><a href="#" class="text-white">Email me</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container d-flex justify-content-between">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                    <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Альбом</font></font></strong>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Переключить навигацию">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </div>
-    </header>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
 
-    <main role="main">
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+    </style>
 
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Пример альбома</font></font></h1>
-                <p class="lead text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Что-то короткое и ведущее в коллекции ниже - ее содержание, создатель и т. Д. Сделайте ее короткой и приятной, но не слишком короткой, чтобы люди просто не пропустили ее полностью.</font></font></p>
-                <p>
-                    <a href="#" class="btn btn-primary my-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Основной призыв к действию </font></font></a>
-                    <a href="#" class="btn btn-secondary my-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вторичное действие</font></font></a>
-                </p>
-            </div>
-        </section>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Заполнитель: миниатюра"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это более широкая карта со вспомогательным текстом, приведенным ниже, которая является естественной подсказкой к дополнительному контенту. </font><font style="vertical-align: inherit;">Этот контент немного длиннее.</font></font></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посмотреть</font></font></button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></button>
-                                    </div>
-                                    <small class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9 минут</font></font></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <footer class="text-muted">
-        <div class="container">
-            <p class="float-right">
-                <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вернуться к началу</font></font></a>
-            </p>
-            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Пример альбома - © Bootstrap, но, пожалуйста, скачайте и настройте его для себя!</font></font></p>
-            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Новое в Bootstrap? </font></font><a href="https://getbootstrap.com/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Посетите домашнюю страницу</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> или прочитайте наше </font></font><a href="/docs/4.4/getting-started/introduction/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">руководство по началу работы</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> .</font></font></p>
-        </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
-
-    <div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><style>.tb_button {padding:1px;cursor:pointer;border-right: 1px solid #8b8b8b;border-left: 1px solid #FFF;border-bottom: 1px solid #fff;}.tb_button.hover {borer:2px outset #def; background-color: #f8f8f8 !important;}.ws_toolbar {z-index:100000} .ws_toolbar .ws_tb_btn {cursor:pointer;border:1px solid #555;padding:3px}   .tb_highlight{background-color:yellow} .tb_hide {visibility:hidden} .ws_toolbar img {padding:2px;margin:0px}</style><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div>
 {% endblock %}

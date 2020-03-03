@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Book;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,16 +21,27 @@ class LibraryController extends Controller
      */
     public function library()
     {
+        $bookManager = $this->get('app.book_manager');
+        $books = $bookManager->getBooks();
 
-        return $this->render('show.html.twig');
+        return $this->render('index.html.twig', array('books' => $books));
+    }
+
+    /**
+     * @Route("/newBook", name="newBook")
+     */
+    public function newBook()
+    {
+        return $this->render('newBook.html.twig');
     }
 
     /**
      * @Route("/addBook", name="addBook")
      * @Method("POST")
      */
-    public function test(ValidatorInterface $validator, Request $request)
+    public function addBook(ValidatorInterface $validator, Request $request)
     {
+        $serializer = $this->get('serializer');
         $bookManager = $this->get('app.book_manager');
 
         $book = new Book();
@@ -41,18 +53,34 @@ class LibraryController extends Controller
         if (count($errors))
         {
             $errorsString = (string) $errors;
-            return new Response($errorsString);
+            return new Response("<script>alert($errorsString)</script>");
         }
-        $result = $bookManager->addBook($book);
-        return $this->render('show.html.twig');
+//        try {
+            $result = $bookManager->addBook($book);
+//        } catch (\InvalidArgumentException $exception) {
+//            return new Response("<script>allert($exception)</script>");
+//        }
+        return new JsonResponse(null, JsonResponse::HTTP_OK);
     }
 
     /**
-     * @Route("/newBook", name="newBook")
+     * @Route("/showBook", name="showBook")
+     * @Method("GET")
      */
-    public function addBook()
+    public function showBook(Request $request)
+    {
+        $bookManager = $this->get('app.book_manager');
+        $book = $bookManager->getBook($_GET['id']);
+
+        return $this->render('show.html.twig', array('book' => $book));
+    }
+
+    /**
+     * @Route("/updateBook", name="updateBook")
+     * @Method("POST")
+     */
+    public function updateBook(Request $request)
     {
 
-        return $this->render('newBook.html.twig');
     }
 }

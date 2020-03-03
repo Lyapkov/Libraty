@@ -2,8 +2,7 @@
 
 {% block body %}
 
-    <body class="text-center">
-    <form class="form-addbook" action="{{ path('addBook') }}"  method="post">
+    <form class="form-addbook text-center addBook" action="{{ path('addBook') }}"  method="post">
         <h1 class="h3 mb-3 font-weight-normal">Добавьте книгу</h1>
         <label for="inputName" class="sr-only">Название книги</label>
         <input type="text" id="Name" name="Name" class="form-control" placeholder="Введите название" required="" autofocus="">
@@ -14,10 +13,25 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Добавить книгу</button>
         <p class="mt-5 mb-3 text-muted">© 2020</p>
     </form>
+    <script>
+        $(document).ready(function( event ) {
+            $( '.addBook' ).submit(function( event ) {
+                event.preventDefault();
+                $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
 
-
-    </body>
-
+                    success: function (result) {
+                        alert('Книга добавлена!');
+                    }
+                });
+            })
+        })
+    </script>
 {% endblock %}
 
 {% block stylesheets %}

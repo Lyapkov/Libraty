@@ -22,7 +22,16 @@ class BookManager
 
     public function addBook(Book $book)
     {
-        $this->doctrine->getRepository(Book::class)->addBook($book);
+        return $this->doctrine->getRepository(Book::class)->addBook($book);
+    }
 
+    public function getBooks()
+    {
+        return $this->doctrine->getRepository(Book::class)->findAll();
+    }
+
+    public function getBook(int $id)
+    {
+        return $this->doctrine->getRepository(Book::class)->find($id);
     }
 }
