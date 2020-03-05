@@ -77,10 +77,31 @@ class LibraryController extends Controller
 
     /**
      * @Route("/updateBook", name="updateBook")
-     * @Method("POST")
+     * @Method("GET")
      */
     public function updateBook(Request $request)
     {
+        $bookManager = $this->get('app.book_manager');
+        $book = $bookManager->getBook($_GET['id']);
 
+        return $this->render('update.html.twig', array('book' => $book));
+    }
+
+    /**
+     * @Route("/ajax/updateBook", name="update")
+     * @Method("POST")
+     */
+    public function update(Request $request)
+    {
+        $bookManager = $this->get('app.book_manager');
+
+        $book = new Book();
+        $book->setId($_POST['Id']);
+        $book->setName($_POST['Name']);
+        $book->setAuthor($_POST['Author']);
+        $book->setYear($_POST['Year']);
+
+        $result = $bookManager->updateBook($book);
+        return new JsonResponse(null, Response::HTTP_OK);
     }
 }

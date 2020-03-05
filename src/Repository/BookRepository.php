@@ -22,4 +22,17 @@ class BookRepository extends EntityRepository
         $em = $this->getEntityManager();
         return $em->find(Book::class, $id);
     }
+
+    public function updateBook(Book $book)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "UPDATE book as b SET b.name = :name, b.year = :year, b.author = :author 
+                WHERE b.id = :id;";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $book->getId(), 'name' => $book->getName(), 'author' => $book->getAuthor(), 'year' => $book->getYear()]);
+
+        return true;
+    }
 }

@@ -34,4 +34,9 @@ class BookManager
     {
         return $this->doctrine->getRepository(Book::class)->find($id);
     }
+
+    public function updateBook(Book $book)
+    {
+        return $this->doctrine->getRepository(Book::class)->updateBook($book);
+    }
 }
