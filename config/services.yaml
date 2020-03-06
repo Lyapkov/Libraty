@@ -30,4 +30,5 @@ services:
         class: App\Manager\BookManager
         arguments:
             - "@doctrine"
+            - "@validator"
         public: true

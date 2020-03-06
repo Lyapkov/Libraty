@@ -6,6 +6,7 @@ namespace App\Manager;
 
 use App\Entity\Book;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class ArticleManager
@@ -13,15 +14,19 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class BookManager
 {
-    public $doctrine;
+    private $doctrine;
+    private $validator;
 
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine, ValidatorInterface $validator)
     {
         $this->doctrine = $doctrine;
+        $this->validator = $validator;
     }
 
     public function addBook(Book $book)
     {
+        $this->validator($book);
+
         return $this->doctrine->getRepository(Book::class)->addBook($book);
     }
 
@@ -37,6 +42,8 @@ class BookManager
 
     public function updateBook(Book $book)
     {
+        $this->validator($book);
+
         return $this->doctrine->getRepository(Book::class)->updateBook($book);
     }
 }

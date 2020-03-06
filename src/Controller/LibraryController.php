@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
@@ -22,7 +23,12 @@ class LibraryController extends Controller
     public function library()
     {
         $bookManager = $this->get('app.book_manager');
-        $books = $bookManager->getBooks();
+        try {
+            $books = $bookManager->getBooks();
+        } catch (\InvalidArgumentException $exception) {
+            throw new ValidatorException();
+        }
+
 
         return $this->render('index.html.twig', array('books' => $books));
     }
